@@ -17,7 +17,7 @@ const port = 8080;
 app.use('/user', userRouter);
 
 app.use('/', (req, res) => {
-  res.send('User mgt server OK!!!');
+  res.send('User mgt server OK tested ci cd!!!');
 })
 
 app.use((error, req, res, next) => {
