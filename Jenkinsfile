@@ -6,7 +6,7 @@ pipeline {
      // ORGANIZATION_NAME
      // YOUR_DOCKERHUB_USERNAME (it doesn't matter if you don't have one)
 
-     SERVICE_NAME = "fleetman-api-gateway"
+     SERVICE_NAME = "user-mgt-svc"
      REPOSITORY_TAG="${YOUR_DOCKERHUB_USERNAME}/${ORGANIZATION_NAME}-${SERVICE_NAME}:${BUILD_ID}"
    }
 
@@ -15,11 +15,6 @@ pipeline {
          steps {
             cleanWs()
             git credentialsId: 'GitHub', url: "https://github.com/${ORGANIZATION_NAME}/${SERVICE_NAME}"
-         }
-      }
-      stage('Build') {
-         steps {
-            sh '''mvn clean package'''
          }
       }
 
@@ -31,7 +26,7 @@ pipeline {
 
       stage('Deploy to Cluster') {
           steps {
-            sh 'envsubst < ${WORKSPACE}/deploy.yaml | kubectl apply -f -'
+            sh 'envsubst < ${WORKSPACE}/user-mgt.yaml | kubectl apply -f -'
           }
       }
    }

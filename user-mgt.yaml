@@ -15,7 +15,8 @@ spec:
       containers:
       - name: user-container
         # image: anokhadocker/user:latest
-        image: user:latest
+        # image: user:latest
+        image: ${REPOSITORY_TAG}
         imagePullPolicy: Never
         ports:
         - containerPort: 8080
